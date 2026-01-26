@@ -7,7 +7,7 @@ from product.models.product import Product
 
 class Order(AbstractBaseModel):
   class StatusChoices(models.TextChoices):
-    PENDING = "Pending"
+    PENDING = "Pending"   
     CONFIRMED = "Confirmed"
     CANCELED = "Canceled"
 
@@ -18,3 +18,5 @@ class Order(AbstractBaseModel):
 
   def __str__(self):
     return f"Order{self.order_id} by {self.user.username}"
+  
+  
