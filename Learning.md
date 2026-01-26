@@ -58,3 +58,15 @@
 - Understanding of how migrations create tables for models and relationships.  
 
 ---
+
+### 9️⃣ Django Rest Framework (DRF) Basics
+- **Serializers**: Learned how to convert complex model instances into JSON data.
+- **Nested Serializers**: Including one serializer inside another (e.g., ProfileSerializer inside UserSerializer) to -  show related data in a single API response.
+- **SerializerMethodField**: Used for logic-based fields that aren't in the database, like calculating a total_price or subtotal on the fly.
+- The **source argument**: Used to access nested attributes (e.g., source='product.name') directly in a flat serializer.
+
+
+🔟 API Views & Folder Structure
+- **@api_view** decorator: Used to transform standard Python functions into DRF-ready views that handle GET/POST requests and return Response objects.
+- **Modular Folder Structure**: Organizing serializers/, views/, and urls/ into separate folders within each app makes the project scalable and easier to navigate.
+- **URL Path Converters**: Using <int:pk> for standard IDs and <uuid:pk> for UUIDs (like in the Cart and Order models) to ensure the API routes correctly identify specific resources.
