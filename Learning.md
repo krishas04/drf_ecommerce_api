@@ -91,3 +91,15 @@
   - the API response does not directly map to a single Django model
   - the response contains **computed, aggregated, or custom fields**
 - They allow the API to return **information**, not just **raw records**.
+
+### 13. Query Profiling with Silk
+- Integrated **Django Silk** to **profile**(the process of analyzing code execution to understand performance characteristics like execution time, query count, memory usage) SQL queries per endpoint.
+- Identified redundant queries.
+- Used Silk’s breakdown to pinpoint slow queries and excessive joins.
+
+### 14. Optimizing with select_related and prefetch_related
+- Applied **select_related** for **single-valued relationships(ForeignKey, OneToOneField)** to reduce joins.
+- Used **prefetch_related** for **multi-valued relationships(ManyToManyField, reverse ForeignKey)** to batch-fetch related objects.
+- Switched to **Prefetch objects** for fine-grained control:
+- Reduced query count from 10+ to 3–4 per endpoint.
+- Improved response time and memory usage by avoiding repeated DB hits.

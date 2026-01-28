@@ -7,10 +7,13 @@ from product.serializers.product_info_serializer import ProductInfoSerializer
 
 @api_view(['GET'])
 def product_info(request):
-  products= Product.objects.all()
+  products_qs= Product.objects.all()
+  count= products_qs.count()
+  max_price=products_qs.aggregate(max_price=Max('price'))['max_price'] # aggregate() returns a dict so to extract the value you are using 'products.aggregate(...)[ 'max_price' ]'
+  products=list(products_qs)
   serializer= ProductInfoSerializer({
     'products':products,
-    'count': products.count(),
-    'max_price':products.aggregate(max_price=Max('price'))['max_price'] # aggregate() returns a dict so to extract the value you are using 'products.aggregate(...)[ 'max_price' ]'
+    'count': count,
+    'max_price':max_price
   })
   return Response(serializer.data)

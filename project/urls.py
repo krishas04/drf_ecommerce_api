@@ -23,4 +23,5 @@ urlpatterns = [
     path('orders/',include('orders.urls')),
     path('accounts/', include('account.urls')),
     path('carts/', include('cart.urls')),
+    path('silk/', include('silk.urls', namespace='silk'))
 ]
