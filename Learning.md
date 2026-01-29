@@ -119,17 +119,3 @@
   - serializer
   - permissions
   are preserved correctly.
-
-### 16. queryset vs get_queryset()
-- Use **queryset** attribute when:
-  - The query is static.
-  - No request-based filtering is required
-- Use **get_queryset()** when:
-  - The queryset depends on the request
-  - Filtering by request.user, query params, or dynamic conditions
-  - get_queryset() is for **collections**.
-
-### 17. get_object() for “me” endpoints
-- **RetrieveAPIView** expects a **lookup field (pk)** by default
-- To avoid this, override **get_object()** instead of relying on **URL parameters**
-- **get_object()** is for a **single, specific object**
