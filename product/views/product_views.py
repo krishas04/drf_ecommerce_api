@@ -1,17 +1,13 @@
-from django.shortcuts import get_object_or_404
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from product.models.product import Product
 from product.serializers.product_serializer import ProductSerializer
+from rest_framework import generics
 
-@api_view(['GET'])
-def product_list(request):
-  products= Product.objects.select_related('category')
-  serializer= ProductSerializer(products,many=True)
-  return Response(serializer.data)
+class ProductListAPIView(generics.ListAPIView):
+  queryset=Product. objects.all()
+  serializer_class=ProductSerializer
 
-@api_view(['GET'])
-def product_detail(request, pk):
-  product= get_object_or_404(Product,pk=pk)
-  serializer= ProductSerializer(product)
-  return Response(serializer.data)
+
+class ProductDetailAPIView(generics.RetrieveAPIView):
+  queryset=Product. objects.all()
+  serializer_class=ProductSerializer
+

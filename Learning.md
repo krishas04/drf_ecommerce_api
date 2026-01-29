@@ -103,3 +103,19 @@
 - Switched to **Prefetch objects** for fine-grained control:
 - Reduced query count from 10+ to 3–4 per endpoint.
 - Improved response time and memory usage by avoiding repeated DB hits.
+
+---
+**Date:** 29 Jan 2026
+
+### 15. Function-Based Views (FBV) → Class-Based Views (CBV) with DRF Generics
+- Learned to refactor simple **function-based views** into **class-based views** using:
+  - **generics.ListAPIView**
+  - **generics.RetrieveAPIView**
+- Understood that **generic CBVs** are best suited for standard **CRUD patterns**:
+  - **ListAPIView** → listing collections
+  - **RetrieveAPIView** → fetching a single object
+- Learned that behavior remains unchanged when refactoring FBV → CBV if:
+  - queryset
+  - serializer
+  - permissions
+  are preserved correctly.

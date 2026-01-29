@@ -1,11 +1,8 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework import generics
 
 from product.models.category import Category
 from product.serializers.category_serializers import CategorySerializer
 
-@api_view(['GET'])
-def category_list(request):
-  categories=Category.objects.all()
-  serializer=CategorySerializer(categories, many=True)
-  return Response(serializer.data)
+class CategoryListAPIView(generics.ListAPIView):
+  queryset= Category.objects.all()
+  serializer_class= CategorySerializer
