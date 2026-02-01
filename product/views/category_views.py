@@ -1,8 +1,15 @@
 from rest_framework import generics
+from rest_framework.permissions import AllowAny, IsAdminUser
 
 from product.models.category import Category
 from product.serializers.category_serializers import CategorySerializer
 
-class CategoryListAPIView(generics.ListAPIView):
+class CategoryListCreateAPIView(generics.ListCreateAPIView):
   queryset= Category.objects.all()
   serializer_class= CategorySerializer
+
+  def get_permissions(self):
+    self.permission_classes= [AllowAny]
+    if self.request.method == 'POST':
+      self.permission_classes = [IsAdminUser]
+    return super().get_permissions()

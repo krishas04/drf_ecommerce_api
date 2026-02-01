@@ -1,0 +1,14 @@
+### Get users list
+GET http://127.0.0.1:8000/accounts/
+
+### Create a user
+POST http://127.0.0.1:8000/accounts/
+Content-Type: application/json
+
+{
+    "username": "Simran",
+    "email": "simran@gmail.com",
+    "first_name": "Simran",
+    "last_name": "Twati",
+    "profile": null
+  }
