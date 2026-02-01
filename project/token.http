@@ -1,0 +1,16 @@
+### Create product
+POST http://127.0.0.1:8000/token/
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "Admin123"
+}
+
+### 
+POST http://127.0.0.1:8000/token/refresh/
+Content-Type: application/json
+
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc3MDA1MDgwMCwiaWF0IjoxNzY5OTY0NDAwLCJqdGkiOiI2MjI1ODdiMzA2MmM0ZWFlOWMwYWJhYWRhOTgzMjU4MSIsInVzZXJfaWQiOiIxIn0.bTiON1wcLUCNY1VbiSemGuYlG4FbpRwQCT1acrz2DpU"
+}

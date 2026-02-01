@@ -21,6 +21,7 @@ GET http://127.0.0.1:8000/products/categories/
 ### Create a Category
 POST http://127.0.0.1:8000/products/categories/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY5OTY0MTQyLCJpYXQiOjE3Njk5NjM4NDIsImp0aSI6ImNhMmMwNmEyZDQxMDRmNTY4Yzc3ZTZkOWNhMmNmYmFhIiwidXNlcl9pZCI6IjEifQ.L9lUWqMqGt-xYm2CuasaDef4K1A8URWbgWEhmw7igRw
 
 {
     "name": "Fashion",

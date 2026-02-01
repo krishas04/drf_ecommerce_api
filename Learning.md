@@ -143,3 +143,12 @@
 - Eliminates the need for external tools like Postman during development.
 - Makes API testing faster and keeps request examples documented alongside the codebase.
 - Especially useful during DRF development for quickly validating permissions, serializers, and responses.
+
+### 19. JWT Authentication with SimpleJWT
+- Learned to implement **JWT-based authentication** in Django REST Framework using **djangorestframework-simplejwt**.
+- Configured JWTAuthentication in REST_FRAMEWORK **settings** alongside SessionAuthentication.
+- Included **routes** for Simple JWT’s **TokenObtainPairView** and **TokenRefreshView** to handle token generation and refresh.
+- Understood the flow of access and refresh tokens for secure API authentication.
+- Used the **/token/** endpoint to obtain JWT tokens by sending username and password.
+- Used the **/token/refresh/** endpoint to generate a new access token using a refresh token.
+- Practiced testing JWT authentication directly from VS Code using REST Client **token.http** file.
