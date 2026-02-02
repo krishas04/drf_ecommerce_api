@@ -24,7 +24,13 @@ def user_me(request):
     serializer = UserSerializer(request.user)
     return Response(serializer.data)
 
-class UserDetailAPIView(generics.RetrieveAPIView):
+class UserDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset=User.objects.all()
     serializer_class= UserSerializer
+
+    def get_permissions(self):
+        self.permission_classes= [AllowAny]
+        if self.request.method in ['PUT', 'PATCH', 'DELETE']:
+            self.permission_classes = [IsAdminUser]
+        return super().get_permissions()
 
