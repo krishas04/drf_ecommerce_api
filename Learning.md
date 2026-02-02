@@ -162,3 +162,13 @@
   - PATCH
   - DELETE
 - Useful when the same URL should handle read, update, and delete operations
+
+### 21. ## Documentation Options in DRF
+I learned that there are several ways to document APIs in Django REST Framework:
+
+- **Browsable API**: DRF’s built-in feature that allows navigating and interacting with endpoints directly in a web interface. Useful for quick testing and exploration.
+- **CoreAPI / Schema Generation**: Automatically generates schemas that describe API endpoints and their inputs/outputs. Forms the basis for automated documentation tools.
+- **OpenAPI / Swagger**: Widely used standards for interactive API documentation, allowing developers to test endpoints directly from the docs.
+- **Third-Party Tools**: Packages like `drf-yasg`, `django-rest-swagger`, and `drf-spectacular` extend schema generation and provide interactive documentation.
+
+I also integrated **drf-spectacular** in my project, which is currently the most recommended third-party tool for generating OpenAPI 3 schemas(latest standard). It ensures that the API documentation is accurate, interactive,customizable and maintainable. It extracts maximum schema information automatically and is designed for modern API workflows.
