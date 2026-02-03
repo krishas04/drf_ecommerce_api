@@ -172,3 +172,24 @@ I learned that there are several ways to document APIs in Django REST Framework:
 - **Third-Party Tools**: Packages like `drf-yasg`, `django-rest-swagger`, and `drf-spectacular` extend schema generation and provide interactive documentation.
 
 I also integrated **drf-spectacular** in my project, which is currently the most recommended third-party tool for generating OpenAPI 3 schemas(latest standard). It ensures that the API documentation is accurate, interactive,customizable and maintainable. It extracts maximum schema information automatically and is designed for modern API workflows.
+
+**Date:** 3 Feb 2026 
+## Filtering in Django REST Framework (DRF)
+I learned how filtering works in Django REST Framework using `django-filter` by referring to the DRF documentation and Django Filter documentation.
+
+### Key Concepts Learned
+
+#### 1. django-filter Integration in DRF
+- DRF supports filtering using the third-party package `django-filter`.
+- Filtering can be enabled either by:
+  - adding `DjangoFilterBackend` to a view’s `filter_backends`, or
+  - configuring it globally in `REST_FRAMEWORK` settings.
+- In this implementation, filtering was enabled using the **default filter backend configuration**, so it was not explicitly added in the view.
+
+#### 2. FilterSet Class
+- Custom filters are defined by creating a class that extends `django_filters.FilterSet`.
+- The `FilterSet` class is used when more control is needed over **filter fields** and **lookup expressions**.
+- A `FilterSet` must define an inner `Meta` class with:
+  - `model`: the model to filter
+  - `fields`: fields and allowed lookup expressions
+  - `FilterSet` was used instead of `filterset_fields` because `filterset_fields` only supports basic filtering (exact match by default), whereas `FilterSet` allows explicit control over advanced lookups such as `icontains`, `lt`, `gt`, and `range`.
