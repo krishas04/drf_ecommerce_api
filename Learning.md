@@ -217,3 +217,10 @@ I learned how DRF handles filtering backends at both global and view levels, and
 - `ordering_fields` defines which model fields clients are allowed to sort by.
 - Clients can sort ascending (default) or descending by prefixing the field with `-`.
 - The `ordering` attribute sets a `default order` for query results if the client does not specify an ordering parameter.
+
+## Custom Generic Filtering
+- In addition to built-in backends like `SearchFilter`, `OrderingFilter`, and `DjangoFilterBackend`, we can create **custom filter backends** by subclassing `BaseFilterBackend` and overriding the `filter_queryset()` method. This allows reusable, declarative restrictions across multiple views.
+- `Built-in backends` require `attributes` (search_fields, ordering_fields, filterset_fields) to know which fields to operate on.
+- When you write your own backend (e.g., IsOwnerFilterBackend), you’re implementing the filtering logic directly in `.filter_queryset()`.That means **no extra attributes** are required — the backend itself decides how to filter.
+- `Custom backends` is applied **automatically** once listed in `filter_backends`.
+

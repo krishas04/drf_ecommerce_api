@@ -1,6 +1,6 @@
 from rest_framework.permissions import IsAdminUser, AllowAny
 from product.models.product import Product
-from product.product_filter import ProductFilter
+from product.product_filter import InStockFilterBackend, ProductFilter
 from product.serializers.product_serializer import ProductSerializer
 from rest_framework import generics
 from rest_framework import filters
@@ -13,7 +13,8 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
   filter_backends=[
     DjangoFilterBackend,
     filters.SearchFilter,
-    filters.OrderingFilter
+    filters.OrderingFilter,
+    InStockFilterBackend
     ]
   search_fields=['name','description']
   ordering_fields=['name','price','stock']
