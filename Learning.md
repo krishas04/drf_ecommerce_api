@@ -209,3 +209,11 @@ I learned how DRF handles filtering backends at both global and view levels, and
 - `DjangoFilterBackend` is used for structured, field-based filtering using query parameters.
 - `SearchFilter` is used for text-based search across one or more fields.
 - Both can be combined in a single view by listing them in `filter_backends`.
+
+## Ordering in DRF API Views
+#### 1. OrderingFilter
+- `OrderingFilter` is a DRF filter backend that enables sorting of query results.
+- It works seamlessly when included in the view's `filter_backends`.
+- `ordering_fields` defines which model fields clients are allowed to sort by.
+- Clients can sort ascending (default) or descending by prefixing the field with `-`.
+- The `ordering` attribute sets a `default order` for query results if the client does not specify an ordering parameter.
