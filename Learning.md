@@ -193,3 +193,19 @@ I learned how filtering works in Django REST Framework using `django-filter` by 
   - `model`: the model to filter
   - `fields`: fields and allowed lookup expressions
   - `FilterSet` was used instead of `filterset_fields` because `filterset_fields` only supports basic filtering (exact match by default), whereas `FilterSet` allows explicit control over advanced lookups such as `icontains`, `lt`, `gt`, and `range`.
+
+## Search Filtering and Per-View Filter Backends in DRF
+
+I learned how DRF handles filtering backends at both global and view levels, and how adding filter backends in a view overrides the default configuration.
+
+### Key Concepts Learned
+
+#### 1. Default vs Per-View Filter Backends
+- DRF allows filter backends to be configured globally using `REST_FRAMEWORK` settings.
+- When `filter_backends` is defined inside a view, it **overrides** the globally configured default filter backends for that view only.
+- Because of this override, any default backend (such as `DjangoFilterBackend`) must be explicitly re-added if it is still required.
+
+#### 2. Combining django-filter with SearchFilter
+- `DjangoFilterBackend` is used for structured, field-based filtering using query parameters.
+- `SearchFilter` is used for text-based search across one or more fields.
+- Both can be combined in a single view by listing them in `filter_backends`.
