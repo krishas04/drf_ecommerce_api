@@ -6,9 +6,9 @@ class Category(models.Model):
   description=models.TextField(blank=True,null=True)
   is_active=models.BooleanField(default=True)
 
-
   class Meta:
     verbose_name_plural="Categories"
 
   def __str__(self):
     return self.name
+  

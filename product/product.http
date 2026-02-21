@@ -6,12 +6,13 @@ GET http://127.0.0.1:8000/products/
 ### Create product
 POST http://127.0.0.1:8000/products/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcwMDE4NDYyLCJpYXQiOjE3NzAwMTgxNjIsImp0aSI6IjU3N2MzMDljMmY4NzQ3ODNhZTA3ZmYwYzFiZGYzYzk4IiwidXNlcl9pZCI6IjEifQ.M-btrv55I-QjaHGQdD_BiWrlT12BmVy8lt3SSzjybrA
 
 {
-    "name": "Axis - Y Dark Spot Correcting Glow Serum",
-    "description": "Vegan, cruelty-free, and suitable for all skin types, including sensitive skin.",
-    "price": "1785.00",
-    "stock": 50,
+    "name": "Kundal Protein Bonding Treatment",
+    "description": "Violet Muguet",
+    "price": "1620.00",
+    "stock": 100,
     "category": 1
 }
 
@@ -21,7 +22,6 @@ GET http://127.0.0.1:8000/products/categories/
 ### Create a Category
 POST http://127.0.0.1:8000/products/categories/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY5OTY0MTQyLCJpYXQiOjE3Njk5NjM4NDIsImp0aSI6ImNhMmMwNmEyZDQxMDRmNTY4Yzc3ZTZkOWNhMmNmYmFhIiwidXNlcl9pZCI6IjEifQ.L9lUWqMqGt-xYm2CuasaDef4K1A8URWbgWEhmw7igRw
 
 {
     "name": "Fashion",
@@ -29,3 +29,29 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
     "description": "Clothing, footwear, and fashion accessories for all ages.",
     "is_active": true
 }
+
+### Get detail of a product
+GET http://127.0.0.1:8000/products/6/
+
+### Update a product
+PUT http://127.0.0.1:8000/products/6/
+Content-Type: application/json
+
+{
+    "name": "Kundal Protein Bonding Treatment",
+    "description": "Violet Muguet",
+    "price": "1615.00",
+    "stock": 100,
+    "category": 1
+}
+
+### Partial Update a product
+PATCH  http://127.0.0.1:8000/products/6/
+Content-Type: application/json
+
+{
+    "price": "1630.00"
+}
+
+### Delete a product
+DELETE  http://127.0.0.1:8000/products/5/

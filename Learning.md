@@ -224,3 +224,69 @@ I learned how DRF handles filtering backends at both global and view levels, and
 - When you write your own backend (e.g., IsOwnerFilterBackend), you’re implementing the filtering logic directly in `.filter_queryset()`.That means **no extra attributes** are required — the backend itself decides how to filter.
 - `Custom backends` is applied **automatically** once listed in `filter_backends`.
 
+**Date:** 21 Feb 2026 
+
+## Pagination in Django REST Framework
+
+### 1. Built-in Pagination Classes
+#### 1.1 PageNumberPagination
+-Uses page query parameter to navigate pages.
+-Response includes:
+  -count → total items
+  -next → link to next page
+  -previous → link to previous page
+  -results → list of items on the current page
+-Configured globally via `DEFAULT_PAGINATION_CLASS` and `PAGE_SIZE`.
+-Can also be set `per-view` with **pagination_class**.
+-Key attributes to customize:
+  -page_size → number of items per page
+  -page_query_param → name of query param, default 'page'
+  -page_size_query_param → client-controlled page size, optional
+  -max_page_size → maximum allowed size if client can control page size
+  -last_page_strings → allows ?page=last to go to last page
+  -template → HTML template for browsable API controls, default 'rest_framework/pagination/numbers.html'
+
+#### 1.2 LimitOffsetPagination
+-Uses `limit` (number of items) and `offset` (starting position) query parameters.
+-Response includes: count, next, previous, results.
+-Key attributes:
+  -default_limit → limit if not provided by client
+  -limit_query_param → query param for limit, default 'limit'
+  -offset_query_param → query param for offset, default 'offset'
+  -max_limit → maximum limit client can request
+  -template → HTML pagination template
+  -Useful when you want precise control over slice positions.
+
+#### 1.3 CursorPagination
+-Uses opaque `cursor` query parameter to navigate.
+-Only allows `forward/reverse` navigation, **no arbitrary page numbers**.
+-Requires unique, unchanging `ordering field` (default -created).
+-Benefits:
+  -Consistent pagination view `even with new items added`
+  -Works well with very `large datasets` without performance degradation
+-Key attributes:
+  -page_size
+  -cursor_query_param → default 'cursor'
+  -ordering → field(s) to order by, default -created
+  -template → HTML pagination template, default 'rest_framework/pagination/previous_and_next.html'
+  -Use with care: ordering field must be unique or nearly unique, non-nullable, and indexed.
+
+### 2. Custom Pagination Classes
+-To customize pagination fully, we can inherit from `pagination.BasePagination` or any `existing pagination class`.
+-Key Methods
+  -**paginate_queryset(self, queryset, request, view=None)**
+    -Takes the original queryset.
+    -Returns only the slice corresponding to the requested page.
+    -Can set internal state used by get_paginated_response.
+  -**get_paginated_response(self, data)**
+    -Receives serialized page data.
+    -Returns a Response object.
+    -Allows customizing JSON format or adding HTTP headers.
+
+**Using Headers Instead of JSON**
+-You can put pagination `links into HTTP headers` instead of JSON body.
+-JSON body: only count and results
+-HTTP header: Link: <url>; rel="next", Link: <url>; rel="prev"
+-Done in **get_paginated_response** with:
+-response['Link'] = '<url>; rel="next"'
+-This keeps the body clean and follows `REST standards`.

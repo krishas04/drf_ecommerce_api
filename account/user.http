@@ -12,3 +12,30 @@ Content-Type: application/json
     "last_name": "Twati",
     "profile": null
   }
+
+### Get detail about a user
+GET http://127.0.0.1:8000/accounts/3/
+
+### Update detail about a user
+PUT http://127.0.0.1:8000/accounts/3/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcwMDIxMDU2LCJpYXQiOjE3NzAwMjA3NTYsImp0aSI6ImUyOTliODdlZTYyMTRkYjFiMDY5ODI3YmY0ZTJlM2U4IiwidXNlcl9pZCI6IjEifQ.B-rc5RofGT-K4C5LVJv136GrOT5F0yhGk13RqOSWMrs
+
+{
+  "username": "Asmita",
+  "email": "asmita6@gmail.com",
+  "first_name": "Asmita",
+  "last_name": "Sherpa",
+  "profile": null
+}
+
+### Partial Update detail about a user
+PATCH  http://127.0.0.1:8000/accounts/3/
+Content-Type: application/json
+
+{
+  "email": "asmita7@gmail.com"
+}
+
+### Delete a user
+DELETE  http://127.0.0.1:8000/accounts/3/

@@ -1,5 +1,6 @@
 from rest_framework.permissions import IsAdminUser, AllowAny
 from product.models.product import Product
+from product.pagination import ProductPagination
 from product.product_filter import InStockFilterBackend, ProductFilter
 from product.serializers.product_serializer import ProductSerializer
 from rest_framework import generics
@@ -19,6 +20,7 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
   search_fields=['name','description']
   ordering_fields=['name','price','stock']
   ordering='name' #default ordering
+  pagination_class=ProductPagination
 
   def get_permissions(self):
     self.permission_classes= [AllowAny]
