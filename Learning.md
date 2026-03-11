@@ -290,3 +290,50 @@ I learned how DRF handles filtering backends at both global and view levels, and
 -Done in **get_paginated_response** with:
 -response['Link'] = '<url>; rel="next"'
 -This keeps the body clean and follows `REST standards`.
+
+## ViewSets
+### 1. Overview
+A **ViewSet** is a type of `class-based view` in Django REST Framework (DRF) that `groups related API actions` (like list, retrieve, create, update, destroy) into a `single class`.
+Instead of writing separate views for each endpoint, a ViewSet organizes the logic in one place and works with routers to generate URLs automatically.
+
+### 2. Standard ViewSet Actions
+list, create, retrieve, update, partial_update, destroy
+
+### HTTP mapping:
+
+`HTTP`   ` Method`	     ` URL	Action`
+GET	    /users/	      list()
+POST    /users/	      create()
+GET	    /users/{id}/	retrieve()
+PUT	    /users/{id}/	update()
+PATCH	  users/{id}/	  partial_update()
+DELETE	/users/{id}/	destroy()
+
+### 3. Extra Actions with @action
+Custom API endpoints can be added with @action:
+```class UserViewSet(viewsets.ModelViewSet):
+
+    @action(detail=True, methods=['post'])
+    def set_password(self, request, pk=None):
+        ...
+    
+    @action(detail=False)
+    def recent_users(self, request):
+        ...
+```
+
+### 5. Reversing Action URLs
+Generate URLs dynamically:
+```
+view.reverse_action("set-password", args=["1"])
+# → 'http://localhost:8000/api/users/1/set_password'
+```
+
+### 6. Types of ViewSets
+`ModelViewSet` → full CRUD API
+
+`ReadOnlyModelViewSet` → read-only API
+
+`GenericViewSet` + mixins → custom actions only
+
+`ViewSet` → full manual control
