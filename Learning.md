@@ -337,3 +337,29 @@ view.reverse_action("set-password", args=["1"])
 `GenericViewSet` + mixins → custom actions only
 
 `ViewSet` → full manual control
+
+## Routers & Dynamic URLs
+### 1. What is a Router?
+- In DRF, a router automatically generates URL patterns for ViewSets.
+- Eliminates the need to manually write URLs for each action.
+- Works with ViewSets to map HTTP methods to actions (list, create, retrieve, update, destroy).
+- Can also handle extra actions defined with `@action`.
+
+- DRF provides two main router types:
+
+* `DefaultRouter`:	Generates standard routes and an API root view.
+* `SimpleRouter`:	Generates standard routes only (no API root).
+
+### 2. Registering a ViewSet with a Router
+```
+from rest_framework.routers import DefaultRouter
+from myapp.views import UserViewSet
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet, basename='user')
+
+urlpatterns = router.urls
+```
+`r'users'` → URL prefix (no trailing slash)
+
+`basename` → used for reversing URLs (user-list, user-detail, etc.)
