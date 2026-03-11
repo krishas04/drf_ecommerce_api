@@ -4,6 +4,7 @@ from orders.models.orders import Order
 from orders.serializers.order_item_serializer import OrderItemSerializer
 
 class OrderSerializer(serializers.ModelSerializer):
+  order_id=serializers.UUIDField(read_only=True)
   items=OrderItemSerializer(many=True, read_only=True)
   total_price=serializers.SerializerMethodField(method_name='total')
   user_name=serializers.CharField(source='user.username')
